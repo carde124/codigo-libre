@@ -259,9 +259,17 @@
   </div>
   <div class="footer-bottom">
     <span>© <span id="year"></span> Código Libre. Todos los derechos reservados.</span>
-    <span>Diseñado y programado a medida.</span>
+    <nav class="legal-links" aria-label="Enlaces legales">
+      <a href="privacidad.html">Política de privacidad</a>
+      <a href="cookies.html">Política de cookies</a>
+    </nav>
   </div>
 </footer>
+
+<div id="cookieBanner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies" hidden>
+  <p>Usamos almacenamiento local para recordar tus preferencias y cargamos tipografías desde Google Fonts, lo que implica una conexión a servidores de Google. No usamos cookies de analítica ni de publicidad. <a href="cookies.html">Más información</a>.</p>
+  <button type="button" id="cookieAccept" class="btn btn-primary">Entendido</button>
+</div>
 
 <script src="js/vendor/gsap.min.js" onerror="this.onerror=null;document.write('&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js&quot;&gt;&lt;\/script&gt;')"></script>
 <script src="js/vendor/scrolltrigger.min.js" onerror="this.onerror=null;document.write('&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js&quot;&gt;&lt;\/script&gt;')"></script>
@@ -272,5 +280,6 @@
 <script src="js/comparator.js"></script>
 <script src="js/premium-loop.js"></script>
 <script src="js/form.js"></script>
+<script src="js/cookie-consent.js"></script>
 </body>
 </html>
