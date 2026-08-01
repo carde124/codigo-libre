@@ -1,0 +1,99 @@
+/* ---------- loader ---------- */
+#loader{
+  position:fixed;inset:0;z-index:1000;
+  background:var(--c-black);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.4rem;
+  transition:opacity .9s var(--ease-premium), visibility .9s var(--ease-premium);
+}
+#loader.is-hidden{opacity:0;visibility:hidden;pointer-events:none}
+#loader .loader-mark{
+  font-family:var(--f-serif);font-size:1.6rem;letter-spacing:.02em;color:var(--c-ivory);
+}
+#loader .loader-bar{
+  width:min(220px,50vw);height:1px;background:rgba(243,237,226,.15);position:relative;overflow:hidden;
+}
+#loader .loader-bar::after{
+  content:'';position:absolute;inset:0;width:40%;background:var(--c-amber);
+  animation:loaderSweep 1.2s ease-in-out infinite;
+}
+@keyframes loaderSweep{
+  0%{transform:translateX(-120%)}
+  100%{transform:translateX(340%)}
+}
+#loader .loader-pct{font-size:.7rem;letter-spacing:.2em;color:var(--c-metal);text-transform:uppercase}
+
+/* ---------- header ---------- */
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.4rem clamp(1.2rem,4vw,3rem);
+  background:linear-gradient(to bottom, rgba(8,9,10,.75), transparent);
+  transition:background .5s var(--ease-premium), backdrop-filter .5s;
+}
+.site-header.is-scrolled{
+  background:rgba(8,9,10,.82);
+  backdrop-filter:blur(10px);
+  border-bottom:var(--border-hair);
+}
+.brand-mark{
+  font-family:var(--f-serif);font-size:1.15rem;letter-spacing:.01em;
+  display:flex;align-items:baseline;gap:.5rem;
+}
+.brand-mark small{
+  font-family:var(--f-sans);font-size:.6rem;letter-spacing:.22em;color:var(--c-amber);
+  text-transform:uppercase;
+}
+.main-nav{
+  position:fixed;top:0;right:clamp(1.2rem,4vw,3rem);z-index:201;
+  display:flex;align-items:center;gap:clamp(1.4rem,2.4vw,2.6rem);
+  padding-block:1.4rem;
+}
+.main-nav a{
+  font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:var(--c-ivory-dim);
+  transition:color .3s;position:relative;
+}
+.main-nav a:hover,.main-nav a:focus-visible{color:var(--c-amber)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;width:28px;z-index:210}
+.nav-toggle span{height:1px;background:var(--c-ivory);width:100%;transition:transform .35s var(--ease-premium),opacity .35s}
+
+/* ---------- footer ---------- */
+.site-footer{
+  border-top:var(--border-hair);
+  padding-block:var(--gap-lg) var(--gap-md);
+}
+.footer-top{
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--gap-lg);
+  padding-bottom:var(--gap-lg);
+}
+.footer-brand p{color:var(--c-ivory-dim);max-width:36ch;margin-top:.8rem;font-size:.92rem}
+.footer-links{display:flex;gap:var(--gap-lg);flex-wrap:wrap}
+.footer-links h4{font-family:var(--f-sans);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--c-metal);margin-bottom:1rem;font-weight:500}
+.footer-links ul{display:flex;flex-direction:column;gap:.65rem}
+.footer-links a{font-size:.88rem;color:var(--c-ivory-dim);transition:color .3s}
+.footer-links a:hover{color:var(--c-amber)}
+.footer-links li{font-size:.88rem;color:var(--c-ivory-dim)}
+.footer-links li[id]{font-style:italic;color:var(--c-metal)}
+.footer-bottom{
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:.8rem;
+  padding-top:var(--gap-md);border-top:var(--border-hair);
+  font-size:.76rem;color:var(--c-metal);letter-spacing:.03em;
+}
+
+@media (max-width:860px){
+  .main-nav{
+    position:fixed;inset:0 0 0 30%;
+    background:var(--c-charcoal);
+    flex-direction:column;justify-content:center;align-items:flex-start;
+    padding:2rem clamp(1.5rem,6vw,3rem);
+    gap:1.6rem;
+    transform:translateX(var(--nav-x, 100%));
+    transition:transform .5s var(--ease-premium);
+    border-left:var(--border-hair);
+  }
+  .main-nav a{font-size:1.1rem}
+  .nav-toggle{display:flex}
+  .nav-toggle.is-open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+  .nav-toggle.is-open span:nth-child(2){opacity:0}
+  .nav-toggle.is-open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+  .footer-top{flex-direction:column;gap:var(--gap-md)}
+}

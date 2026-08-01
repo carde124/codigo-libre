@@ -1,0 +1,39 @@
+:root{
+  /* paleta */
+  --c-black:#08090a;
+  --c-charcoal:#111315;
+  --c-graphite:#1c1f22;
+  --c-graphite-2:#2a2e32;
+  --c-ivory:#f3ede2;
+  --c-ivory-dim:#c9c2b4;
+  --c-metal:#8b8f94;
+  --c-amber:#ff9e2c;
+  --c-amber-dim:#c97b1f;
+  --c-amber-glow:rgba(255,158,44,.35);
+
+  /* tipografia */
+  --f-serif:'Fraunces', Georgia, 'Times New Roman', serif;
+  --f-sans:'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+
+  /* espaciado */
+  --gap-xxs: .4rem;
+  --gap-xs: .8rem;
+  --gap-sm: 1.6rem;
+  --gap-md: 3.2rem;
+  --gap-lg: 6.4rem;
+  --gap-xl: 11rem;
+
+  /* motion */
+  --ease-premium: cubic-bezier(.16,.84,.32,1);
+  --dur-md: .8s;
+
+  --radius-sm: 2px;
+  --border-hair: 1px solid rgba(243,237,226,.12);
+}
+
+@media (max-width: 720px){
+  :root{
+    --gap-lg: 4rem;
+    --gap-xl: 6rem;
+  }
+}

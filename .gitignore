@@ -1,0 +1,21 @@
+# build artifacts
+dist/
+
+# Claude Code local tooling/config (not part of the deployed site)
+.claude/
+
+# environment / secrets
+.env
+.env.local
+.env.*.local
+
+# dependencies (if any Node tooling is added later)
+node_modules/
+
+# OS/editor cruft
+.DS_Store
+Thumbs.db
+server.log
+
+# Vercel
+.vercel

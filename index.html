@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Código Libre — Creamos la web que tu negocio merece</title>
+<meta name="description" content="Código Libre diseña y programa páginas web premium a medida: sin plantillas, con código propio, rendimiento y diseño editorial.">
+<meta name="theme-color" content="#08090a">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Código Libre — Creamos la web que tu negocio merece">
+<meta property="og:description" content="Diseño y desarrollo web premium a medida. Sin plantillas, con código propio.">
+<meta property="og:image" content="assets/hero/images/hero-master.webp">
+
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap">
+
+<link rel="preload" as="video" href="assets/hero/video/hero-1080p.mp4" type="video/mp4">
+<link rel="preload" as="image" href="assets/hero/images/hero-poster.webp">
+
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
+<!-- ================= LOADER ================= -->
+<div id="loader" role="status" aria-live="polite">
+  <span class="loader-mark">Código Libre</span>
+  <div class="loader-bar"></div>
+  <span class="loader-pct">Cargando experiencia</span>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header" id="siteHeader">
+  <a href="#top" class="brand-mark">Código Libre <small>Estudio Web</small></a>
+  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Abrir menú de navegación">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+<!-- rendered as a sibling of the header (not a child) so its position:fixed panel
+     is never trapped inside the header's backdrop-filter containing block -->
+<nav class="main-nav" id="mainNav" aria-label="Navegación principal">
+  <a href="#introduccion">Estudio</a>
+  <a href="#diseno">Diseño</a>
+  <a href="#diferencial">Diferencial</a>
+  <a href="#edicion-premium">Enterprise</a>
+  <a href="#contacto" class="btn btn-ghost">Hablemos</a>
+</nav>
+
+<main id="main">
+
+  <!-- ================= HERO ================= -->
+  <section id="top" class="hero-pin" aria-label="Presentación Código Libre">
+    <div class="hero-stage">
+      <div class="hero-media" id="heroMedia">
+        <video
+          id="heroVideo"
+          muted playsinline preload="auto"
+          poster="assets/hero/images/hero-poster.webp">
+          <source src="assets/hero/video/hero-1080p.webm" type="video/webm">
+          <source src="assets/hero/video/hero-1080p.mp4" type="video/mp4">
+        </video>
+        <img class="hero-fallback" id="heroFallback" src="assets/hero/images/hero-master.webp" alt="Pantalla Código Libre mostrando código convirtiéndose en una web terminada" hidden>
+        <div class="hero-grain" aria-hidden="true"></div>
+      </div>
+
+      <div class="hero-copy">
+        <p class="eyebrow" data-hero-el>Desarrollo web premium</p>
+        <h1 class="hero-brand" data-hero-el>Código Libre</h1>
+        <p class="hero-model" data-hero-el>Páginas web de autor, diseñadas y programadas a medida</p>
+        <p class="hero-line" data-hero-el>“Creamos la web que tu negocio merece”</p>
+      </div>
+
+      <div class="hero-scrollcue" id="scrollCue">Desplázate</div>
+      <div class="hero-loading-badge" id="heroLoadingBadge"><span class="dot"></span> Cargando vídeo</div>
+    </div>
+  </section>
+
+  <!-- ================= 1. INTRODUCCIÓN ================= -->
+  <section id="introduccion" class="section container">
+    <div class="section-head">
+      <p class="eyebrow">Introducción</p>
+      <h2>De la idea al código, sin plantillas</h2>
+      <p class="lede">En Código Libre diseñamos y programamos cada proyecto desde cero: sin plantillas genéricas, sin bloqueos de constructores visuales. Código propio, tuyo para siempre.</p>
+    </div>
+    <div class="stats-row">
+      <div class="stat"><b>100%</b><span>Código diseñado y programado a medida para cada proyecto</span></div>
+      <div class="stat"><b>0</b><span>Plantillas ni constructores visuales genéricos</span></div>
+      <div class="stat"><b>100%</b><span>Código fuente tuyo, sin dependencias ni licencias ocultas</span></div>
+    </div>
+  </section>
+
+  <!-- ================= 2. DISEÑO E INGENIERÍA ================= -->
+  <section id="diseno" class="section container">
+    <div class="split">
+      <div class="split-media frame">
+        <img src="assets/images/web/producto-3-4.webp" alt="Pantalla Código Libre, representación del sistema de diseño y arquitectura técnica del estudio" loading="lazy" width="1600" height="1986">
+        <span class="material-chip">Arquitectura técnica — Código Libre</span>
+        <img class="detail-inset" src="assets/images/web/material-macro.webp" alt="Detalle macro del acabado y los materiales de Código Libre" loading="lazy" width="1600" height="1986">
+      </div>
+      <div>
+        <p class="eyebrow">Diseño &amp; ingeniería</p>
+        <h2>Cada línea de código, una decisión de diseño</h2>
+        <p class="lede">Diseño y desarrollo van de la mano en cada proyecto: tipografía editorial, espaciado cuidado y una base técnica sólida que carga rápido y escala sin fricción.</p>
+        <div class="detail-list">
+          <div class="detail-item"><b>Frontend a medida</b><p>HTML semántico y CSS moderno, sin frameworks pesados innecesarios.</p></div>
+          <div class="detail-item"><b>Rendimiento</b><p>Core Web Vitals optimizados desde el primer commit.</p></div>
+          <div class="detail-item"><b>SEO técnico</b><p>Estructura, metadatos y velocidad pensados para posicionar.</p></div>
+          <div class="detail-item"><b>Hosting &amp; seguridad</b><p>Despliegue gestionado con buenas prácticas de seguridad.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 3. CARACTERÍSTICA DIFERENCIAL ================= -->
+  <section id="diferencial" class="section container">
+    <div class="section-head">
+      <p class="eyebrow">Característica diferencial</p>
+      <h2>La diferencia se nota al primer vistazo</h2>
+      <p class="lede">Arrastra para comparar una web genérica de plantilla con una web diseñada y programada por Código Libre.</p>
+    </div>
+    <div class="comparator" id="comparator" role="slider" tabindex="0"
+         aria-label="Comparador antes y después" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+      <img class="before-layer" src="assets/images/web/antes-web.webp" alt="Web genérica de plantilla, con diseño desordenado y poco cuidado" loading="lazy">
+      <img class="after-layer" id="comparatorAfter" src="assets/images/web/despues-web.webp" alt="Web premium diseñada por Código Libre, editorial y minimalista" loading="lazy">
+      <span class="tag before">Antes</span>
+      <span class="tag after">Código Libre</span>
+      <div class="handle" id="comparatorHandle"></div>
+    </div>
+  </section>
+
+
+  <!-- ================= 6. PROYECTOS ENTERPRISE ================= -->
+  <section id="edicion-premium" class="section container">
+    <div class="premium-block">
+      <div class="premium-media">
+        <video class="loop-video" id="premiumLoopVideo" muted loop playsinline preload="metadata" poster="assets/images/web/premium-loop-poster.webp">
+          <source src="assets/hero/video/premium-loop.webm" type="video/webm">
+          <source src="assets/hero/video/premium-loop.mp4" type="video/mp4">
+        </video>
+        <img class="detail-inset" src="assets/images/web/material-macro.webp" alt="Detalle macro de materiales y acabados de Código Libre" loading="lazy" width="1600" height="1986">
+      </div>
+      <div>
+        <p class="eyebrow">Proyectos Enterprise</p>
+        <h2>Cuando tu web necesita ir más allá</h2>
+        <p class="lede">Para negocios con necesidades más complejas: integraciones a medida, migraciones, varios idiomas o equipos de contenido. Trabajas con un desarrollador dedicado durante todo el proyecto, de principio a fin.</p>
+        <ul class="benefit-list">
+          <li>Desarrollador senior dedicado durante todo el proyecto</li>
+          <li>Código fuente propio, sin dependencias ni licencias ocultas</li>
+          <li>Soporte prioritario tras la entrega</li>
+          <li>Acompañamiento en la evolución de la web a largo plazo</li>
+        </ul>
+        <div class="premium-cta">
+          <a href="#contacto" class="btn btn-primary">Hablar de mi proyecto Enterprise</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FORMULARIO ================= -->
+  <section id="contacto" class="section container">
+    <div class="form-wrap">
+      <div>
+        <p class="eyebrow">Hablemos de tu proyecto</p>
+        <h2>Empecemos a construir tu web</h2>
+        <p class="lede">Cuéntanos qué necesitas y te responderemos en menos de 24 horas con una propuesta a medida.</p>
+      </div>
+
+      <form id="contactForm" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="fName">Nombre</label>
+            <input type="text" id="fName" name="nombre" autocomplete="name" required>
+            <span class="field-error" id="err-fName"></span>
+          </div>
+          <div class="field">
+            <label for="fEmail">Correo electrónico</label>
+            <input type="email" id="fEmail" name="email" autocomplete="email" required>
+            <span class="field-error" id="err-fEmail"></span>
+          </div>
+          <div class="field">
+            <label for="fCountry">País</label>
+            <input type="text" id="fCountry" name="pais" autocomplete="country-name" required>
+            <span class="field-error" id="err-fCountry"></span>
+          </div>
+          <div class="field">
+            <label for="fCompany">Empresa</label>
+            <input type="text" id="fCompany" name="empresa" autocomplete="organization">
+            <span class="field-error" id="err-fCompany"></span>
+          </div>
+          <div class="field full">
+            <label for="fConfig">Tipo de proyecto</label>
+            <select id="fConfig" name="configuracion">
+              <option value="landing">Landing / página única</option>
+              <option value="corporativa">Web corporativa</option>
+              <option value="tienda">Tienda online</option>
+              <option value="premium">Edición premium / Enterprise</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="fMessage">Mensaje</label>
+            <textarea id="fMessage" name="mensaje" required></textarea>
+            <span class="field-error" id="err-fMessage"></span>
+          </div>
+          <div class="form-submit-row">
+            <button type="submit" class="btn btn-primary">Enviar solicitud</button>
+            <span class="form-status" id="formStatus" role="status" aria-live="polite"></span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer container">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#top" class="brand-mark">Código Libre <small>Estudio Web</small></a>
+      <p>Diseñamos y programamos páginas web premium a medida. Sin plantillas, con código propio.</p>
+    </div>
+    <div class="footer-links">
+      <div>
+        <h4>Estudio</h4>
+        <ul>
+          <li><a href="#introduccion">Introducción</a></li>
+          <li><a href="#diseno">Diseño e ingeniería</a></li>
+          <li><a href="#diferencial">Diferencial</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Proyecto</h4>
+        <ul>
+          <li><a href="#edicion-premium">Enterprise</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto directo</h4>
+        <!--
+          Pendiente de completar: sustituye el texto y añade el href real, por ejemplo:
+          <a href="tel:+34600000000">+34 600 00 00 00</a>
+          <a href="mailto:hola@tudominio.com">hola@tudominio.com</a>
+        -->
+        <ul>
+          <li id="footerPhone">[Teléfono — pendiente]</li>
+          <li id="footerEmail">[Correo electrónico — pendiente]</li>
+          <li><a href="#contacto">Formulario de contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span id="year"></span> Código Libre. Todos los derechos reservados.</span>
+    <span>Diseñado y programado a medida.</span>
+  </div>
+</footer>
+
+<script src="js/vendor/gsap.min.js" onerror="this.onerror=null;document.write('&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js&quot;&gt;&lt;\/script&gt;')"></script>
+<script src="js/vendor/scrolltrigger.min.js" onerror="this.onerror=null;document.write('&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js&quot;&gt;&lt;\/script&gt;')"></script>
+<script src="js/vendor/lenis.min.js" onerror="this.onerror=null;document.write('&lt;script src=&quot;https://unpkg.com/lenis@1.1.14/dist/lenis.min.js&quot;&gt;&lt;\/script&gt;')"></script>
+
+<script src="js/main.js"></script>
+<script src="js/hero-scroll.js"></script>
+<script src="js/comparator.js"></script>
+<script src="js/premium-loop.js"></script>
+<script src="js/form.js"></script>
+</body>
+</html>

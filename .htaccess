@@ -1,0 +1,54 @@
+# Código Libre — configuración para hosting compartido (Hostinger / Apache)
+
+# ---------- Tipos MIME para vídeo, fuentes e imágenes modernas ----------
+<IfModule mod_mime.c>
+  AddType video/mp4 .mp4
+  AddType video/webm .webm
+  AddType font/woff2 .woff2
+  AddType font/woff .woff
+  AddType image/webp .webp
+  AddType image/avif .avif
+  AddType image/svg+xml .svg
+</IfModule>
+
+# ---------- Accept-Ranges para permitir el scrubbing del vídeo ----------
+<IfModule mod_headers.c>
+  <FilesMatch "\.(mp4|webm)$">
+    Header set Accept-Ranges bytes
+  </FilesMatch>
+</IfModule>
+
+# byte-range requests habilitadas (necesario para seek/scrubbing de vídeo)
+<IfModule mod_headers.c>
+  Header always set Accept-Ranges bytes "expr=%{CONTENT_TYPE} =~ m#^(video/)#"
+</IfModule>
+
+# ---------- Compresión ----------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json image/svg+xml
+</IfModule>
+
+# ---------- Caché de navegador ----------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType video/mp4 "access plus 30 days"
+  ExpiresByType video/webm "access plus 30 days"
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/avif "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+</IfModule>
+
+# ---------- Seguridad básica ----------
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Evita listar el contenido de directorios
+Options -Indexes
+
+# UTF-8 por defecto
+AddDefaultCharset UTF-8
