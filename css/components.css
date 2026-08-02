@@ -88,6 +88,7 @@
 .form-submit-row{margin-top:.6rem;display:flex;align-items:center;gap:1.4rem;grid-column:1/-1}
 .form-status{font-size:.85rem;color:var(--c-ivory-dim)}
 .form-status.is-success{color:var(--c-amber)}
+.hp-field{position:absolute!important;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
 
 @media (max-width:900px){
   .split,.split.reverse{grid-template-columns:1fr;gap:2.2rem}

@@ -64,13 +64,39 @@
     status.textContent = 'Enviando…';
     status.classList.remove('is-success');
 
-    // No backend is connected in this static build; this simulates the round trip
-    // so the confirmation UX can be reviewed end to end.
-    setTimeout(function(){
-      status.textContent = 'Gracias. Hemos recibido tu solicitud y te responderemos en menos de 24 horas.';
-      status.classList.add('is-success');
+    var FALLBACK = ' Si el problema continúa, escríbenos a codigolibreesp@gmail.com.';
+    var payload = {
+      nombre: document.getElementById('fName').value,
+      email: document.getElementById('fEmail').value,
+      pais: document.getElementById('fCountry').value,
+      empresa: document.getElementById('fCompany').value,
+      configuracion: document.getElementById('fConfig').value,
+      mensaje: document.getElementById('fMessage').value,
+      web: (document.getElementById('fWeb') || {}).value || ''
+    };
+
+    fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function(resp){
+      return resp.json().catch(function(){ return {}; }).then(function(data){
+        if (resp.ok && data.ok){
+          status.textContent = 'Gracias. Hemos recibido tu solicitud y te responderemos en menos de 24 horas.';
+          status.classList.add('is-success');
+          form.reset();
+        } else if (resp.status === 429){
+          status.textContent = 'Has enviado demasiadas solicitudes seguidas. Espera unos minutos e inténtalo de nuevo.';
+        } else if (resp.status === 503){
+          status.textContent = 'El envío automático aún no está activo. Escríbenos a codigolibreesp@gmail.com y te responderemos igual de rápido.';
+        } else {
+          status.textContent = (data.error || 'No se pudo enviar tu solicitud.') + FALLBACK;
+        }
+        submitBtn.disabled = false;
+      });
+    }).catch(function(){
+      status.textContent = 'No se pudo conectar con el servidor.' + FALLBACK;
       submitBtn.disabled = false;
-      form.reset();
-    }, 900);
+    });
   });
 })();
