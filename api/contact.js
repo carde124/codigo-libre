@@ -42,6 +42,84 @@ function clean(value, max){
   return value.replace(/[\u0000-\u001F\u007F]/g, ' ').trim().slice(0, max);
 }
 
+// Escapado para el aviso por correo: lo que escribe el visitante nunca debe
+// interpretarse como HTML dentro del email.
+function esc(value){
+  return String(value == null ? '' : value)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+// Aviso por correo del nuevo contacto. Nunca lanza: si el envío falla, el
+// mensaje ya está guardado en la base de datos y el visitante ve su
+// confirmación igualmente.
+async function notificarPorEmail(datos){
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) return { enviado: false, motivo: 'sin RESEND_API_KEY' };
+
+  const destino = process.env.NOTIFY_EMAIL || 'codigolibreesp@gmail.com';
+  const remitente = process.env.NOTIFY_FROM || 'Codigo Libre <onboarding@resend.dev>';
+
+  const filas = [
+    ['Nombre', datos.nombre],
+    ['Correo', datos.email],
+    ['Pais', datos.pais],
+    ['Empresa', datos.empresa || '-'],
+    ['Tipo de proyecto', datos.configuracion || '-']
+  ].map(function(f){
+    return '<tr>'
+      + '<td style="padding:6px 14px 6px 0;color:#8b8f94;white-space:nowrap;">' + esc(f[0]) + '</td>'
+      + '<td style="padding:6px 0;color:#111;"><strong>' + esc(f[1]) + '</strong></td>'
+      + '</tr>';
+  }).join('');
+
+  const html = ''
+    + '<div style="font-family:Arial,Helvetica,sans-serif;max-width:560px;">'
+    + '<p style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#c97b1f;margin:0 0 4px;">Codigo Libre</p>'
+    + '<h2 style="margin:0 0 18px;font-size:20px;color:#111;">Nueva solicitud de contacto</h2>'
+    + '<table style="border-collapse:collapse;font-size:14px;">' + filas + '</table>'
+    + '<p style="margin:22px 0 6px;color:#8b8f94;font-size:12px;letter-spacing:.08em;text-transform:uppercase;">Mensaje</p>'
+    + '<div style="white-space:pre-wrap;font-size:14px;line-height:1.6;color:#111;border-left:3px solid #ff9e2c;padding-left:14px;">'
+    + esc(datos.mensaje) + '</div>'
+    + '<p style="margin-top:26px;font-size:12px;color:#8b8f94;">Responde a este correo para contestar directamente al cliente.</p>'
+    + '</div>';
+
+  const texto = 'Nueva solicitud de contacto\n\n'
+    + 'Nombre: ' + datos.nombre + '\n'
+    + 'Correo: ' + datos.email + '\n'
+    + 'Pais: ' + datos.pais + '\n'
+    + 'Empresa: ' + (datos.empresa || '-') + '\n'
+    + 'Tipo de proyecto: ' + (datos.configuracion || '-') + '\n\n'
+    + 'Mensaje:\n' + datos.mensaje + '\n';
+
+  try {
+    const resp = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + apiKey,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        from: remitente,
+        to: [destino],
+        reply_to: datos.email,
+        subject: 'Nueva solicitud web: ' + datos.nombre,
+        html: html,
+        text: texto
+      })
+    });
+    if (!resp.ok){
+      const detalle = await resp.text().catch(function(){ return ''; });
+      console.error('Aviso por email fallido:', resp.status, detalle.slice(0, 300));
+      return { enviado: false, motivo: 'resend ' + resp.status };
+    }
+    return { enviado: true };
+  } catch (e) {
+    console.error('Aviso por email fallido:', e && e.message);
+    return { enviado: false, motivo: 'excepcion' };
+  }
+}
+
 module.exports = async function handler(req, res){
   try {
     const origin = req.headers.origin || '';
@@ -145,6 +223,17 @@ module.exports = async function handler(req, res){
 
     hits.push(now);
     recentByIp.set(ipHash, hits);
+
+    // El mensaje ya está guardado. El aviso por correo es un extra:
+    // si falla, se registra en los logs pero no se pierde el contacto.
+    await notificarPorEmail({
+      nombre: nombre,
+      email: email,
+      pais: pais,
+      empresa: empresa,
+      configuracion: configuracion,
+      mensaje: mensaje
+    });
 
     return res.status(200).json({ ok: true });
   } catch (e) {
